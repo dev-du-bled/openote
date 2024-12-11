@@ -1,0 +1,6 @@
+[submodule "front"]
+	path = front
+	url = git@github.com:dev-du-bled/openote-front.git
+[submodule "back"]
+	path = back
+	url = git@github.com:dev-du-bled/openote-back.git
