@@ -30,3 +30,15 @@ services:
       OPENOTE_DB_USER: openuser
       OPENOTE_DB_HOST: openote_db
       OPENOTE_DB_PASS: openpass
+
+  openote_front:
+    container_name: openote_front
+    restart: unless-stopped
+    depends_on:
+      - openote_api
+
+    build:
+      dockerfile: front.Dockerfile
+
+    ports:
+      - "3000:3000"
