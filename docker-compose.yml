@@ -10,7 +10,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - ./back/res/base.sql:/docker-entrypoint-initdb.d/base.sql # postgres will automatically source sql file her the first time it's initiated
+      - ./back/res/base.sql:/docker-entrypoint-initdb.d/base.sql # postgres will automatically source sql file here the first time it's initiated
       - ./back/res/entries.sql:/app/entries.sql
 
   openote_s3:
@@ -49,6 +49,9 @@ services:
       OPENOTE_DB_HOST: openote_db
       OPENOTE_DB_PASS: openpass
       S3_REGION: eu-east-1
+      S3_URL: http://host.containers.internal:9000
+      S3_LOGIN: openuser
+      S3_PASS: openpass
 
   openote_front:
     container_name: openote_front
@@ -63,4 +66,4 @@ services:
       - "3000:3000"
 
     environment:
-      NUXT_PUBLIC_API_BASE_URL: "http://localhost:8000" # change to your domain nyame and port for you
+      NUXT_PUBLIC_API_BASE_URL: "http://localhost:8000" # change according to your setup
