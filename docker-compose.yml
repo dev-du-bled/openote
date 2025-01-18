@@ -63,4 +63,4 @@ services:
       - "3000:3000"
 
     environment:
-      OPENOTE_API_BASE_URL: "http://localhost:8000" # change to your domain nyame and port for you
+      NUXT_PUBLIC_API_BASE_URL: "http://localhost:8000" # change to your domain nyame and port for you
