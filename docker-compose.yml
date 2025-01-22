@@ -13,23 +13,6 @@ services:
       - ./back/res/base.sql:/docker-entrypoint-initdb.d/base.sql # postgres will automatically source sql file here the first time it's initiated
       - ./back/res/entries.sql:/app/entries.sql
 
-  openote_s3:
-    image: quay.io/minio/minio
-    command: server /data --console-address ":9001"
-    container_name: openote_s3
-    restart: on-failure
-    ports:
-      - "9000:9000" # minio api
-      - "9001:9001" # minio web console
-
-    volumes:
-      - "./storage:/data"
-      - ./back/assets/logos:/app/logos
-
-    environment:
-      MINIO_ROOT_USER: openuser
-      MINIO_ROOT_PASSWORD: openpass
-
   openote_api:
     container_name: openote_api
     restart: on-failure
@@ -48,10 +31,6 @@ services:
       OPENOTE_DB_USER: openuser
       OPENOTE_DB_HOST: openote_db
       OPENOTE_DB_PASS: openpass
-      S3_REGION: eu-east-1
-      S3_URL: http://host.containers.internal:9000
-      S3_LOGIN: openuser
-      S3_PASS: openpass
 
   openote_front:
     container_name: openote_front
