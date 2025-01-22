@@ -10,8 +10,8 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - ./back/res/base.sql:/docker-entrypoint-initdb.d/base.sql # postgres will automatically source sql file here the first time it's initiated
-      - ./back/res/entries.sql:/app/entries.sql
+      - ./back/res/base.sql:/docker-entrypoint-initdb.d/base.sql:ro # postgres will automatically source sql file here the first time it's initiated
+      - ./back/res/entries.sql:/app/entries.sql:ro
 
   openote_api:
     container_name: openote_api
@@ -24,6 +24,9 @@ services:
 
     ports:
       - "8000:8000"
+
+    volumes:
+      - ./back/assets/logos:/app/default/logos:ro
 
     environment:
       OPENOTE_DB_NAME: openote
