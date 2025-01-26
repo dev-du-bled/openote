@@ -12,6 +12,7 @@ services:
     volumes:
       - ./back/res/base.sql:/docker-entrypoint-initdb.d/base.sql:ro # postgres will automatically source sql file here the first time it's initiated
       - ./back/res/entries.sql:/app/entries.sql:ro
+      - ./data/db:/var/lib/postgresql/data
 
   openote_api:
     container_name: openote_api
@@ -27,6 +28,7 @@ services:
 
     volumes:
       - ./back/assets/logos:/app/default/logos:ro
+      - ./data/storage:/app/storage
 
     environment:
       OPENOTE_DB_NAME: openote
